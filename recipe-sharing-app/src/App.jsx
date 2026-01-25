@@ -1,8 +1,9 @@
 // src/App.jsx
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useParams } from 'react-router-dom';
 import RecipeList from './components/RecipeList';
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeDetails from './components/RecipeDetails';
+import SearchBar from './components/SearchBar'; // include search if you’ve built it
 
 function App() {
   return (
@@ -13,15 +14,19 @@ function App() {
       </nav>
 
       <Routes>
+        {/* Home route: shows search bar, add form, and recipe list */}
         <Route
           path="/"
           element={
             <>
+              <SearchBar />
               <AddRecipeForm />
               <RecipeList />
             </>
           }
         />
+
+        {/* Recipe details route */}
         <Route path="/recipe/:id" element={<RecipeDetailsWrapper />} />
       </Routes>
     </Router>
@@ -29,7 +34,6 @@ function App() {
 }
 
 // Wrapper to extract recipeId from route params
-import { useParams } from 'react-router-dom';
 const RecipeDetailsWrapper = () => {
   const { id } = useParams();
   return <RecipeDetails recipeId={id} />;

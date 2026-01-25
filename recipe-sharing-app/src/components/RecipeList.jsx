@@ -10,6 +10,7 @@ const RecipeList = () => {
       {recipes.map((recipe) => (
         <div key={recipe.id}>
           <h3>
+            {/* Link navigates to /recipe/:id */}
             <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link>
           </h3>
           <p>{recipe.description}</p>
